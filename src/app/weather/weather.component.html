@@ -1,0 +1,31 @@
+<div class="card" (click)="toggleUnits()" [ngStyle]="setStyles()">
+  <div class="card-header" [class.invisible]="!dataReceived" >
+    <div class="row">
+    <div class="col-sm-8">
+        <p>{{currentLocation}}</p>
+    </div>
+    <div class="col-sm-4 text-sm-right">
+        <h1>{{ weatherData.temp | tempUnit: currentTempUnit | number: '.0-0' }}&deg;</h1>
+    </div>  
+  </div>
+  </div>
+  <div class="card-block">
+    <div id ="indicator" [hidden] = "dataReceived">
+        <i class="fas fa-cog fa-spin fa-4x"></i>
+    </div>
+    <canvas id="icon" width="128" height="128" [hidden] = "!dataReceived" ></canvas>
+    <p>{{ weatherData.summary }}</p>
+  </div>
+  <div class="card-footer" [class.invisible]="!dataReceived">
+    <div class="row">
+      <div class="col-sm-5">
+        <p>Wind</p>
+        <p>{{ weatherData.wind | speedUnit: currentSpeedUnit  }}</p>
+      </div>
+      <div class="col-sm-5 offset-sm-2">
+        <p>Humidity</p>
+        <p>{{ weatherData.humidity | percent }}</p>
+      </div>
+  </div>
+  </div>
+</div>
